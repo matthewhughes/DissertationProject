@@ -3,9 +3,9 @@ import requests
 class acquire_data:
 
     def __init__(self):
-        self.consumer_key = 'YHzDnf8DVkH1GJNWhhQbhWreA'
-        self.consumer_secret = 'XMoo7QhJSA9ciBOiDw3DqxzsxBIhnvzomOmb4UqC2G3SiTpetw'
-        self.term = 'London'
+        self.consumer_key = ''
+        self.consumer_secret = ''
+        self.term = ''
 
     def RequestJson(self):
         pass
