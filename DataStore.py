@@ -1,26 +1,17 @@
-import pycouchdb
+import pymongo
 
-class CouchDBStore(object):
+class MongoDBStore(object):
 
     def __init__(self):
         self.server = ''
         self.database = ''
+        self.collection = ''
         self.document = ''
 
-    def Setup(self):
-        self.server = pycouchdb.Server("http://127.0.0.1:5984/")
+    def setup(self):
+        self.server = pymongo.MongoClient()
+        self.database = self.server.socialmediadata
+        self.collection = self.database.posts
 
-    def CreateDB(self):
-        self.server.create("socialnewsdata")
-
-    def UseDB(self):
-        self.database = self.server.database('socialnewsdata')
-
-    def SaveRecord(self, title='hello'):
-        self.document = self.database.save({"title":title})
-        print self.document
-
-    def QueryDB(self):
-        map_func = "function(document) { emit(document.title, 1); }"
-        self.database.temporary_query(map_func)
-        list(self.database.temporary_query(map_func))
+    def SaveRecord(self, title='title'):
+        self.document = self.collection.insert({"title":titlese})

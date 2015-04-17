@@ -36,7 +36,7 @@ class AcquireNews(object):
 
     def GetBBCNewsTitles(self, BeebXML):
 
-        db = DataStore.CouchDBStore()
+        db = DataStore.MongoDBStore()
         db.Setup()
         db.UseDB()
 
