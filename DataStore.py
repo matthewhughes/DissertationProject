@@ -8,10 +8,10 @@ class MongoDBStore(object):
         self.collection = ''
         self.document = ''
 
-    def setup(self):
+    def Setup(self):
         self.server = pymongo.MongoClient()
         self.database = self.server.socialmediadata
         self.collection = self.database.posts
 
     def SaveRecord(self, title='title'):
-        self.document = self.collection.insert({"title":titlese})
+        self.document = self.collection.insert({"title":title})

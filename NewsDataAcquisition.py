@@ -2,6 +2,7 @@ import requests
 from lxml import etree
 import feedparser
 import DataStore
+import ProcessNewsTitles
 
 class AcquireNews(object):
 
@@ -35,13 +36,20 @@ class AcquireNews(object):
             exit()
 
     def GetBBCNewsTitles(self, BeebXML):
-
+        Titles = ProcessNewsTitles.ProcessTitles()
         db = DataStore.MongoDBStore()
         db.Setup()
-        db.UseDB()
+        Titles = ProcessNewsTitles.ProcessTitles()
 
         feed = feedparser.parse(BeebXML)
         for x in range(0, len(feed['entries'])):
             entry = feed['entries'][x]['title']
             print entry
+
+            Titles.title = entry
+            Titles.tokenize_title()
+            Titles.position_tags()
+            Titles.find_noun()
+            Titles.find_verb()
+
             db.SaveRecord(entry)

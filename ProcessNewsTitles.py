@@ -28,20 +28,24 @@ class ProcessTitles(object):
         noun = nouns_list[0][0]
         if noun != '':
             self.noun = noun
+            print noun
         else:
             print "No noun found. "
 
     def find_verb(self):
         verbs_list = []
+        print self.tokens
 
         for i in self.tokens:
             if(i[1] == 'VB' or i[1] == 'VBD' or i[1] == 'VBG' or i[1] == 'VBN' or i[1] == 'VBP' or i[1] == 'VBZ'):
                 print i
                 verbs_list.append([i])
-        verb = verbs_list[0][0]
-        if verb != '':
-            self.verb = verb
-        else:
+        try:
+            verb = verbs_list[0][0]
+            if verb != '':
+                self.verb = verb
+                print verb
+        except:
             print "No verb found. "
 
 
@@ -51,7 +55,7 @@ def main():
     'IMF praises UK economic strategy']
     Titles = ProcessTitles()
     try:
-        for i in news_titles:
+        for i in range(0, len(news_titles)):
             Titles.title = i
             Titles.tokenize_title()
             Titles.position_tags()
